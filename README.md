@@ -27,9 +27,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 Hello Microverse <a name="about-project"></a>
+# 📖 Awesome Books <a name="about-project"></a>
 
-This is a collaborative project.
+This is a collaborative project. "Awesome books" is a simple website that displays a list of books and allows you to add and remove books from that list.
 
 **[Awesome Books]** is a HTML CSS and JS project
 
