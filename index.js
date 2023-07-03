@@ -1,4 +1,3 @@
-// Display books in the UI
 function addBookToList(book) {
   const list = document.querySelector('#collection');
 
@@ -8,12 +7,12 @@ function addBookToList(book) {
     <p class="bookTitle">${book.title}</p>
     <p>${book.author}.</p>
     <button class="delete">Remove</button>
+    <hr>
   `;
 
   list.appendChild(bookDisplay);
 }
 
-// Get books from localStorage
 function getBooks() {
   let books;
   if (localStorage.getItem('books') === null) {
@@ -33,14 +32,12 @@ function displayBooks() {
 
 document.addEventListener('DOMContentLoaded', displayBooks);
 
-// Add a book to localStorage
 function addBook(book) {
   const books = getBooks();
   books.push(book);
   localStorage.setItem('books', JSON.stringify(books));
 }
 
-// Remove a book from localStorage
 function removeBook(title) {
   const books = getBooks();
 
@@ -52,12 +49,12 @@ function removeBook(title) {
 
   localStorage.setItem('books', JSON.stringify(books));
 }
-// Clear input fields
+
 function clearFields() {
   document.querySelector('#title').value = '';
   document.querySelector('#author').value = '';
 }
-// Add book form submission event
+
 document.querySelector('#book-form').addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -65,8 +62,8 @@ document.querySelector('#book-form').addEventListener('submit', (event) => {
   const author = document.querySelector('#author').value;
 
   const book = {
-    title: title,
-    author: author,
+    title,
+    author,
   };
 
   addBookToList(book);
@@ -74,7 +71,6 @@ document.querySelector('#book-form').addEventListener('submit', (event) => {
   clearFields();
 });
 
-// Remove book event
 document.querySelector('#collection').addEventListener('click', (event) => {
   if (event.target.classList.contains('delete')) {
     event.target.parentElement.remove();
