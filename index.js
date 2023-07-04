@@ -18,10 +18,8 @@ class BookCollection {
     const bookDisplay = document.createElement('div');
     bookDisplay.className = 'Collection1';
     bookDisplay.innerHTML = `
-      <p class="bookTitle">${book.title}</p>
-      <p>${book.author}.</p>
+      <p class="bookTitle">${book.title} by ${book.author}</p>
       <button class="delete">Remove</button>
-      <hr>
     `;
 
     list.appendChild(bookDisplay);
