@@ -4,18 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="collection-container">
-      <h1>All Awesome books</h1>
-      <div id="collection"></div>
-    </div>
-    <div class="form-container">
-      <br />
+    <div class="login-box">
+      <div class="collection-container">
+        <h1>All Awesome books</h1>
+        <div id="collection"></div>
+      </div>
       <form id="book-form">
-        <input type="text" required placeholder="Title" id="title"/><br /><br/>
-        <input type="text" required placeholder="Author" id="author"/><br /><br/>
-        <button id="add-button" type="submit">Add</button>
+        <h2>Add a book</h2>
+        <div class="user-box">
+          <input type="text" name="" required="" id="title">
+          <label>Book Title</label>
+        </div>
+        <div class="user-box">
+          <input type="text" name="" required="" id="author">
+          <label>Book Author</label>
+        </div>
+        <button id="add-button" type="submit">ADD<span></span></button>
       </form>
     </div>
     <script src="./index.js"></script>
