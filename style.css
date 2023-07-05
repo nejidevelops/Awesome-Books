@@ -34,20 +34,22 @@ body {
 .Collection1 {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 320px;
+}
+
+.book1 {
+  flex: 5;
 }
 
 .bookTitle {
   float: left;
   color: white;
-  flex: 1;
+  margin-right: 4px;
 }
 
 .bookAuthor {
   float: left;
   color: white;
-  flex: 2;
 }
 
 .delete {
