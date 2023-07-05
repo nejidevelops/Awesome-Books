@@ -72,9 +72,14 @@ class BookCollection {
 
   handleCollectionClick(event) {
     if (event.target.classList.contains('delete')) {
-      event.target.parentElement.remove();
-      const bookTitle = event.target.previousElementSibling.previousElementSibling.textContent;
-      this.removeBook(bookTitle);
+      const bookDisplay = event.target.closest('.Collection1');
+      if (bookDisplay) {
+        const bookTitleElement = bookDisplay.querySelector('.bookTitle');
+        const bookTitle = bookTitleElement.textContent;
+        this.removeBook(bookTitle);
+        localStorage.removeItem('books');
+        bookDisplay.remove();
+      }
     }
   }
 
