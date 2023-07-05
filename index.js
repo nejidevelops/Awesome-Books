@@ -19,10 +19,8 @@ class BookCollection {
     const bookDisplay = document.createElement('div');
     bookDisplay.className = 'Collection1';
     bookDisplay.innerHTML = `
-    <div class='book1'>
       <p class="bookTitle">${book.title}</p>
       <p class="bookAuthor"> by ${book.author}.</p>
-    </div>
       <button class="delete">Remove</button>
     `;
 
