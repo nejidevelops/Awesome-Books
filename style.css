@@ -41,7 +41,13 @@ body {
 .bookTitle {
   float: left;
   color: white;
-  flex: 5;
+  flex: 1;
+}
+
+.bookAuthor {
+  float: left;
+  color: white;
+  flex: 2;
 }
 
 .delete {
