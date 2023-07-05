@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+
 class Book {
   constructor(title, author) {
     this.title = title;
@@ -18,7 +19,8 @@ class BookCollection {
     const bookDisplay = document.createElement('div');
     bookDisplay.className = 'Collection1';
     bookDisplay.innerHTML = `
-      <p class="bookTitle">${book.title} by ${book.author}</p>
+      <p class="bookTitle">${book.title}</p>
+      <p class="bookAuthor"> by ${book.author}.</p>
       <button class="delete">Remove</button>
     `;
 
@@ -72,14 +74,9 @@ class BookCollection {
 
   handleCollectionClick(event) {
     if (event.target.classList.contains('delete')) {
-      const bookDisplay = event.target.closest('.Collection1');
-      if (bookDisplay) {
-        const bookTitleElement = bookDisplay.querySelector('.bookTitle');
-        const bookTitle = bookTitleElement.textContent;
-        this.removeBook(bookTitle);
-        localStorage.removeItem('books');
-        bookDisplay.remove();
-      }
+      event.target.parentElement.remove();
+      const bookTitle = event.target.previousElementSibling.previousElementSibling.textContent;
+      this.removeBook(bookTitle);
     }
   }
 
