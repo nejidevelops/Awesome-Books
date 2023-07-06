@@ -1,80 +1,99 @@
-function addBookToList(book) {
-  const list = document.querySelector('#collection');
+/* eslint-disable max-classes-per-file */
 
-  const bookDisplay = document.createElement('div');
-  bookDisplay.className = 'Collection1';
-  bookDisplay.innerHTML = `
-    <p class="bookTitle">${book.title}</p>
-    <p>${book.author}.</p>
-    <button class="delete">Remove</button>
-    <hr>
-  `;
-
-  list.appendChild(bookDisplay);
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
 }
 
-function getBooks() {
-  let books;
-  if (localStorage.getItem('books') === null) {
-    books = [];
-  } else {
-    books = JSON.parse(localStorage.getItem('books'));
+class BookCollection {
+  constructor() {
+    this.books = this.getBooks();
   }
 
-  return books;
-}
+  /* eslint-disable-next-line */
+  addBookToList(book) {
+    const list = document.querySelector('#collection');
 
-const books = getBooks();
+    const bookDisplay = document.createElement('div');
+    bookDisplay.className = 'Collection1';
+    bookDisplay.innerHTML = `
+      <p class="bookTitle">${book.title}</p>
+      <p class="bookAuthor"> by ${book.author}.</p>
+      <button class="delete">Remove</button>
+    `;
 
-function displayBooks() {
-  books.forEach((book) => addBookToList(book));
-}
+    list.appendChild(bookDisplay);
+  }
 
-document.addEventListener('DOMContentLoaded', displayBooks);
-
-function addBook(book) {
-  const books = getBooks();
-  books.push(book);
-  localStorage.setItem('books', JSON.stringify(books));
-}
-
-function removeBook(title) {
-  const books = getBooks();
-
-  books.forEach((book, index) => {
-    if (book.title === title) {
-      books.splice(index, 1);
+  /* eslint-disable-next-line */
+  getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
     }
-  });
 
-  localStorage.setItem('books', JSON.stringify(books));
-}
-
-function clearFields() {
-  document.querySelector('#title').value = '';
-  document.querySelector('#author').value = '';
-}
-
-document.querySelector('#book-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const title = document.querySelector('#title').value;
-  const author = document.querySelector('#author').value;
-
-  const book = {
-    title,
-    author,
-  };
-
-  addBookToList(book);
-  addBook(book);
-  clearFields();
-});
-
-document.querySelector('#collection').addEventListener('click', (event) => {
-  if (event.target.classList.contains('delete')) {
-    event.target.parentElement.remove();
-    const bookTitle = event.target.previousElementSibling.previousElementSibling.textContent;
-    removeBook(bookTitle);
+    return books;
   }
-});
+
+  displayBooks() {
+    this.books.forEach((book) => this.addBookToList(book));
+  }
+
+  addBook(book) {
+    this.books.push(book);
+    localStorage.setItem('books', JSON.stringify(this.books));
+  }
+
+  removeBook(title) {
+    this.books = this.books.filter((book) => book.title !== title);
+    localStorage.setItem('books', JSON.stringify(this.books));
+  }
+
+  /* eslint-disable-next-line */
+  clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+
+    const book = new Book(title, author);
+
+    this.addBookToList(book);
+    this.addBook(book);
+    this.clearFields();
+  }
+
+  handleCollectionClick(event) {
+    if (event.target.classList.contains('delete')) {
+      event.target.parentElement.remove();
+      const bookTitle = event.target.previousElementSibling.previousElementSibling.textContent;
+      this.removeBook(bookTitle);
+    }
+  }
+
+  initialize() {
+    document.addEventListener('DOMContentLoaded', () => {
+      this.displayBooks();
+    });
+
+    document.querySelector('#book-form').addEventListener('submit', (event) => {
+      this.handleFormSubmit(event);
+    });
+
+    document.querySelector('#collection').addEventListener('click', (event) => {
+      this.handleCollectionClick(event);
+    });
+  }
+}
+
+const collection = new BookCollection();
+collection.initialize();
