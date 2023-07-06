@@ -148,6 +148,15 @@ body {
   border-radius: 10px;
 }
 
+.welcome-message p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
+
 .login-box h2 {
   color: white;
   text-align: center;
