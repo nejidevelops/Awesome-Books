@@ -4,6 +4,55 @@
   box-sizing: border-box;
 }
 
+#bookCollection,
+#addBook,
+#contact {
+  display: none;
+}
+
+#bookCollection:target,
+#addBook:target,
+#contact:target {
+  display: block;
+}
+
+header {
+  position: fixed;
+  margin-top: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  background: rgba(24, 20, 20, 0.987);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 5px 5px;
+  color: white;
+  height: max-content;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul {
+  display: flex;
+  gap: 3em;
+  list-style: none;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+header nav ul li a::before {
+  text-decoration: none;
+  color: white;
+  content: '|  ';
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -188,6 +237,13 @@ body {
 .login-box button span {
   position: absolute;
   display: block;
+}
+
+.contactInfo {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 @keyframes btn-anim1 {
